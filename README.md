@@ -30,9 +30,9 @@ Movimento reduzido no sistema = mesma composição estática do `?fx=0`. Sem Jav
 | `robots.txt`, `sitemap.xml`, `llms.txt` | SEO e resumo para assistentes de IA (AEO) |
 | `qa/` | planos de QA e capturas (não precisa subir para o servidor) |
 
-## Identidade (extraída do site atual)
+## Identidade: preto, branco e laranja
 
-Laranja `#F9681C` · navy `#000B41` · ardósia `#464F7A` · branco `#FFFFFE`.
+Paleta da página OnexCloud, sem azul: preto `#111010` (`--preto`), branco, laranja `#F9681C` do logo, cinzas quentes `#55504A` (texto, `--cinza`) e `#746E66` (`--cinza-2`), papel `#F6F4F1`. Fundos escuros: um único gradiente de preto que esquenta para laranja num canto (sem grade, sem brilhos soltos). As fotos do Higgsfield foram reprocessadas com ffmpeg (`geq`): o que era azul virou cinza neutro e o laranja/branco ficaram intactos.
 
 **Tipografia igual à da página OnexCloud** (onexdc.com.br/OnexCloud): **Manrope** em tudo — títulos 900 com -0,03 em e entrelinha ~1,05, subtítulos 800, menu 700, botões 800, texto 500/600 — e **Caveat** (manuscrita) só na anotação "seu servidor mora aqui" da hero. JetBrains Mono fica apenas no terminal da intro e nos racks em ASCII. Logo oficial em WebP (não redesenhado). O X da intro usa polígonos **medidos no alfa do PNG oficial** e termina com o PNG oficial por cima.
 
@@ -51,9 +51,29 @@ Laranja `#F9681C` · navy `#000B41` · ardósia `#464F7A` · branco `#FFFFFE`.
 
 Cabeçalho e textos da hero entram a partir de `--rise-start: 2,95 s`. Pular: Escape, Tab, Enter, roda, toque, clique, rolagem; aba oculta libera; failsafe CSS em 4,8 s.
 
+## Copy no método de carta de vendas (Empiricus)
+
+A página segue o fluxo das cartas de vendas da Empiricus — título-provocação → lead em história → inimigo → mecanismo → segmentação → prova → oferta com redução de risco → objeções → fechamento com P.S. — com visual atual e **sem inventar números, prazos ou garantias** (tudo vem do site e do FAQ atuais da OneX).
+
+| # | Seção | Papel no método |
+|---|---|---|
+| 1 | Hero: "Quando seu sistema parar, quem vai atender?" | título-provocação + promessa (engenheiro na 1ª ligação, datacenter que dá para visitar) + CTA em 1ª pessoa |
+| 2 | Carta aberta "O pior dia da sua empresa não avisa quando vai chegar" | lead, inimigo (provedores de massa), índice "nos próximos minutos você vai ver", assinatura |
+| 3 | O teste da terça-feira às 14h | história/contraste com o relógio na rolagem |
+| 4 | Três coisas que nenhum provedor de massa consegue te prometer | mecanismo único |
+| 5 | Diagnóstico: "Qual é o seu desafio neste momento?" | segmentação (como as páginas atuais da Empiricus): 4 frases → recomendação + CTA com mensagem pronta no WhatsApp; funciona sem JS via `:has()` |
+| 6 | Soluções | detalhe do produto |
+| 7 | "Não acredite na gente. Venha ver." + depoimento | prova |
+| 8 | Oferta: tudo o que vem junto + "por que não somos os mais baratos" + "comprove antes de assinar" | oferta, âncora de preço honesta (R$ 5,99 do FAQ) e redução de risco (visita antes de assinar) |
+| 9 | Quem está por trás | credibilidade (+ resumo para AEO) |
+| 10 | Ainda com dúvida? | objeções |
+| 11 | Fechamento + **P.S.** ("ligue agora e repare em quem atende") | fechamento clássico de carta |
+
+Botões principais em 1ª pessoa e caixa alta (`.btn--caps`: "Quero falar com um engenheiro", "Quero agendar minha visita"). No celular, um CTA fixo aparece depois da hero e some no fechamento. A versão anterior do HTML ficou guardada no histórico do Git.
+
 ## Hero — datacenter isométrico animado
 
-Texto à esquerda e, à direita, uma cena isométrica em SVG: piso com grade técnica, duas fileiras de 6 racks, corredor frio com ladrilhos perfurados, calhas de fibra sobre os racks e um ponto de backbone. "Seu rack" tem contorno laranja e a anotação manuscrita "seu servidor mora aqui". Cartões de vidro por cima: **Operacional** (Ipatinga · BH, com linha de status), **Engenheiro na linha** (24/7 · na 1ª ligação) e **Energia redundante** (geradores + UPS).
+Texto à esquerda e, à direita, uma cena isométrica em SVG: piso limpo, duas fileiras de 6 racks, corredor frio com ladrilhos perfurados, calhas de fibra sobre os racks e um ponto de backbone. "Seu rack" tem contorno laranja e a anotação manuscrita "seu servidor mora aqui". Cartões de vidro por cima: **Operacional** (Ipatinga · BH, com linha de status), **Engenheiro na linha** (24/7 · na 1ª ligação) e **Energia redundante** (geradores + UPS).
 
 - **Entrada** (a partir de `--rise-start`): piso aparece, racks sobem um a um (55 ms entre eles), fibras se desenham, cartões e anotação entram.
 - **Ciclos**: LEDs piscam em ritmos diferentes, pulsos de dados correm pelas fibras (backbone → fileira do fundo, backbone → seu rack, fileira da frente → backbone), ar frio sobe do corredor, o backbone emite um anel.
@@ -63,7 +83,7 @@ Texto à esquerda e, à direita, uma cena isométrica em SVG: piso com grade té
 ## Animações vetoriais
 
 - **Por que a OneX** (3 cenas): porta do datacenter se abre para o seu rack · ligação vai direto ao engenheiro e a nota da "música de espera" é riscada · cinco serviços se ligam ao X e viram "1 contrato · 1 nota fiscal".
-- **Soluções** (9 cenas, uma por aba): servidor entra no rack com energia A/B e ar frio · vizinhos somem e CPU/memória/disco vão a 100% · terminal da VPS digitando · camadas da virtualização se empilham · arquivos entram na nuvem com pino em MG · site se monta e liga ao pino de MG · e-mail passa pelo escudo e o spam ricocheteia · voz viaja e o PABX distribui ramais · cópias diárias se empilham e restauram.
+- **Soluções** (9 cenas, uma por aba): servidor entra no rack com energia A/B e ar frio · vizinhos somem e CPU/memória/disco vão a 100% · terminal da VPS digitando · camadas da virtualização se empilham · arquivos entram na nuvem com pino em MG · site se monta e liga ao pino de MG · e-mail passa pelo escudo e o spam ricocheteia · voz viaja e o PABX distribui ramais · backup: a cópia diária sai do seu servidor para o cofre no datacenter (seg, ter, qua), um arquivo é apagado, a cópia de terça volta pelo caminho de restauração e o servidor fica "restaurado em minutos".
 - **Terça-feira às 14h**: no desktop a cena fica fixa e a rolagem gira o relógio (14:00 → 16:30); a coluna da OneX termina nos primeiros segundos, a do provedor gigante vai se arrastando. No celular a sequência toca ao entrar na tela.
 - **Sobre**: dois racks em ASCII (Ipatinga e Belo Horizonte, 64 colunas que se ajustam à largura) — ligam linha a linha ao aparecer; LEDs piscam, barras de uso oscilam, ventoinhas giram, o tráfego anda no switch, o UPS pulsa e uma faixa de luz percorre os racks (no desktop segue o cursor); "seu servidor" fica em laranja. Texto num `<pre>` a ~8 quadros/s, pausado fora da tela. Por cima, a rota Belo Horizonte ↔ Ipatinga. **Contato**: as três peças do X se montam.
 

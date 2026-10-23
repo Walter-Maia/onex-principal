@@ -30,9 +30,9 @@ function rnd() { semente = (semente * 9301 + 49297) % 233280; return semente / 2
 var out = [];
 out.push('<svg class="hv-cena" viewBox="__VB__" role="img" aria-label="Ilustração animada de um datacenter: duas fileiras de racks com luzes acesas, calhas de fibra levando pulsos de dados, ar frio subindo pelo corredor e o seu rack destacado em laranja." focusable="false">');
 out.push('<defs>' +
-  '<linearGradient id="hv-g-piso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B1A63"/><stop offset="1" stop-color="#030E4A"/></linearGradient>' +
-  '<linearGradient id="hv-g-frente" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15247A"/><stop offset="1" stop-color="#0A175C"/></linearGradient>' +
-  '<linearGradient id="hv-g-lado" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1652"/><stop offset="1" stop-color="#050E3F"/></linearGradient>' +
+  '<linearGradient id="hv-g-piso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1A1817"/><stop offset="1" stop-color="#0D0C0C"/></linearGradient>' +
+  '<linearGradient id="hv-g-frente" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B2826"/><stop offset="1" stop-color="#1A1817"/></linearGradient>' +
+  '<linearGradient id="hv-g-lado" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141312"/><stop offset="1" stop-color="#0B0A0A"/></linearGradient>' +
   '<radialGradient id="hv-g-brilho"><stop offset="0" stop-color="#F9681C" stop-opacity=".55"/><stop offset="1" stop-color="#F9681C" stop-opacity="0"/></radialGradient>' +
   '</defs>');
 
@@ -42,7 +42,7 @@ out.push('<polygon class="hv-piso" points="' + poli([[0, 0, 0], [PISO.x, 0, 0], 
 var grade = '';
 for (var gx = 1; gx < PISO.x; gx++) grade += linha([gx, 0, 0], [gx, PISO.y, 0]);
 for (var gy = 1; gy < PISO.y; gy++) grade += linha([0, gy, 0], [PISO.x, gy, 0]);
-out.push('<path class="hv-grade" d="' + grade + '"/>');
+// (grade do piso removida a pedido: fundo limpo)
 out.push('<path class="hv-borda d" pathLength="1" d="' + caminho([[0, PISO.y, 0], [PISO.x, PISO.y, 0], [PISO.x, 0, 0]]) + '"/>');
 // corredor frio: ladrilhos perfurados entre as fileiras
 var yA = FILAS[0].y1 + 0.35, yB = FILAS[1].y0 - 0.35;

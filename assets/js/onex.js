@@ -22,7 +22,7 @@
   var pedido = 0;
   function aoRolar() {
     pedido = 0;
-    var limite = hero ? hero.offsetHeight - 90 : 40;
+    var limite = hero ? hero.offsetHeight - 180 : 40; // sólido antes de a hero sair, para o menu nunca ficar sobre o texto dela
     topo.classList.toggle('is-solido', window.pageYOffset > limite);
     terca && tercaRolar();
   }
@@ -236,6 +236,39 @@
       });
       hero.addEventListener('pointerleave', function () { alvoX = alvoY = 0; if (!quadroParallax) quadroParallax = requestAnimationFrame(moverParallax); });
     }
+  }
+
+  /* ---------------- diagnóstico: marca a escolha (reforça o :has do CSS) e mostra a recomendação ---------------- */
+  var quiz = $('[data-quiz]');
+  if (quiz) {
+    var opcoesQuiz = $$('.quiz__op', quiz);
+    quiz.addEventListener('change', function (e) {
+      if (!e.target || e.target.name !== 'desafio') return;
+      quiz.setAttribute('data-escolha', e.target.value);
+      opcoesQuiz.forEach(function (op) { op.classList.toggle('is-sel', op.contains(e.target)); });
+      var res = $('[data-res="' + e.target.value + '"]', quiz);
+      // no celular a recomendação fica abaixo das opções: leva a pessoa até ela
+      if (res && !mqLargo.matches) {
+        var topoRes = res.getBoundingClientRect().top;
+        if (topoRes > window.innerHeight * .7) res.scrollIntoView({ behavior: fx() ? 'smooth' : 'auto', block: 'start' });
+      }
+    });
+  }
+
+  /* ---------------- CTA fixo no celular: aparece depois da hero e some no fechamento ---------------- */
+  var ctaFixo = $('[data-cta-fixo]');
+  var fechamento = $('[data-contato]');
+  if (ctaFixo && hero && temIO) {
+    var passouHero = false, noFechamento = false;
+    var atualizaCta = function () {
+      var mostra = passouHero && !noFechamento;
+      ctaFixo.classList.toggle('is-visivel', mostra);
+      ctaFixo.setAttribute('aria-hidden', String(!mostra));
+      var link = $('a', ctaFixo);
+      if (link) link.tabIndex = mostra ? 0 : -1;
+    };
+    new IntersectionObserver(function (en) { passouHero = !en[0].isIntersecting && en[0].boundingClientRect.top < 0; atualizaCta(); }, { threshold: 0 }).observe(hero);
+    if (fechamento) new IntersectionObserver(function (en) { noFechamento = en[0].isIntersecting; atualizaCta(); }, { threshold: 0 }).observe(fechamento);
   }
 
   aoRolar();

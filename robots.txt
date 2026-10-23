@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Assistentes de IA podem ler o resumo em /llms.txt
+Sitemap: https://onexdc.com.br/sitemap.xml

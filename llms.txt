@@ -1,0 +1,41 @@
+# OneX Data Centers
+
+> Empresa mineira de infraestrutura de TI com datacenters próprios em Ipatinga e Belo Horizonte (Minas Gerais, Brasil). Oferece colocation, servidores dedicados, VPS, virtualização, nuvem corporativa (OnexCloud), hospedagem de sites, e-mail profissional, backup em nuvem e telefonia VoIP, com suporte de engenheiro 24 horas por dia, 7 dias por semana, inclusive feriados. O cliente pode agendar uma visita e ver o próprio servidor.
+
+## Fatos principais
+- Datacenters próprios: Ipatinga/MG e Belo Horizonte/MG.
+- Suporte: engenheiro atende na primeira ligação, 24/7, sem chatbot. Telefone (31) 4040-4888.
+- Uptime informado: 99,9%.
+- Energia redundante: geradores a diesel com autonomia de horas e UPS (no-break).
+- Dados armazenados em Minas Gerais, com endereço visitável — relevante para LGPD e auditoria.
+- Contratos a partir de 12 meses, sem cláusulas abusivas. Migração feita pela equipe técnica, normalmente em menos de 24 horas.
+- Atende empresas de todo o Brasil.
+
+## Soluções
+- Colocation: seu servidor no datacenter da OneX, com espaço em rack, energia redundante, climatização e conectividade; visita agendada ao equipamento.
+- Servidores dedicados: hardware e capacidade sob medida, 100% dos recursos para a aplicação, área dedicada no Data Hall.
+- VPS Linux: 4 GB de RAM, 2 vCPU dedicadas, 120 GB, transferência ilimitada, acesso root, IP dedicado, contrato de 12 meses (Windows sob consulta).
+- Virtualização: hardware → hypervisor → máquinas virtuais → aplicações; failover automático e snapshots.
+- OnexCloud: nuvem corporativa hospedada em MG, 1 TB compartilhado, 1 usuário de e-mail, até 5 GB para site, backup incluso.
+- Hospedagem de sites: a partir de R$ 29,90/mês (2 vCPU, 4 GB RAM, 20 GB SSD, tráfego e banco de dados ilimitados, 5 domínios de complemento).
+- E-mail profissional com domínio: antispam, antivírus, SSL, POP3/IMAP, 10 GB por usuário.
+- Telefonia VoIP: Essencial R$ 99/mês (chamadas locais ilimitadas), Profissional R$ 199/mês (nacionais, internacionais e PABX virtual), Enterprise sob consulta. Custos até 70% menores que a telefonia convencional.
+- Backup em nuvem: cópias diárias automáticas com retenção configurável; restauração de arquivo ou servidor em minutos.
+
+## Programa de indicação
+- Indique a OneX: quem indica recebe 100% do valor da primeira parcela do produto contratado pela empresa indicada. Página: https://onexdc.com.br/indique/
+
+## Contato
+- Telefone e WhatsApp: (31) 4040-4888 — https://wa.me/553140404888
+- E-mail: contato@onexdatacenter.com.br
+- Painel do cliente: https://nimbus.onexdatacenter.com.br
+- Instagram: https://www.instagram.com/onexdc/ · LinkedIn: https://www.linkedin.com/company/onex-dc/ · Facebook: https://www.facebook.com/onexdcenter/
+
+## Páginas
+- [Início](https://onexdc.com.br/)
+- [Colocation e datacenter](https://onexdc.com.br/produtos/onex-data-center/)
+- [Servidores dedicados](https://onexdc.com.br/produtos/servidores-dedicados/)
+- [Virtualização](https://onexdc.com.br/produtos/virtualizacao/)
+- [Soluções em nuvem](https://onexdc.com.br/produtos/solucoes-em-nuvem/)
+- [Telefonia VoIP](https://onexdc.com.br/produtos/telefonia-voip/)
+- [Indique e ganhe](https://onexdc.com.br/indique/)

@@ -1,109 +1,154 @@
-# OneX Data Centers — site principal
+# ONEX Data Centers — landing de infraestrutura
 
-Nova home de https://onexdc.com.br/ em HTML, CSS e JS puros (sem build, sem bibliotecas). Abra `index.html` direto no navegador ou sirva a pasta em qualquer servidor estático.
+Reformulação do `index.html` segundo a **Especificação de Desenvolvimento — Novo Site ONEX Data Centers** (28/10/2026). HTML, CSS e JS puros (sem build, sem bibliotecas). Abra `index.html` direto no navegador ou sirva a pasta em qualquer servidor estático.
 
-## Parâmetros de teste
+O `index.html` é a **landing de infraestrutura** do PDF (rota `/infraestrutura`, P1): as 14 seções do wireframe + rodapé. As notas do wireframe ("encurtar 50%", "sem lista e sem assinatura", "sai a arte ASCII") são mudanças sobre esta página. Por isso o canonical já aponta para `https://onexdc.com.br/infraestrutura`. A home institucional (`/`, copy H1–H10 do documento-mãe) ainda não existe; **no lançamento este arquivo vai para `/infraestrutura/`** e a home ocupa a raiz.
 
-| URL | Efeito |
-|---|---|
-| `index.html` | intro 1x por sessão do navegador |
-| `?intro=1` | força a intro (para revisar) |
-| `?intro=0` | pula a intro |
-| `?fx=0` | composição estática: sem intro e sem animações (a cena da hero aparece montada e parada) |
+## Páginas deste repositório
 
-Movimento reduzido no sistema = mesma composição estática do `?fx=0`. Sem JavaScript, todo o conteúdo aparece e a cena da hero fica montada (é SVG no próprio HTML).
+| Página | Arquivo | Prioridade | Situação |
+|---|---|---|---|
+| Landing de infraestrutura | `index.html` | P1 | Pronta, com placeholders das pendências |
+| Obrigado — visita | `obrigado-visita/index.html` | P1 | Pronta (guarda de sessão + `generate_lead`) |
+| Obrigado — proposta | `obrigado-proposta/index.html` | P1 | Pronta (guarda de sessão + `generate_lead`) |
+| Política de Privacidade / Termos | `privacidade/`, `termos/` | P1 | Estrutura pronta; texto do jurídico pendente |
+| Home institucional | — | P1 | Falta a copy do documento-mãe |
+| Presença digital, Telefonia, Obrigado — isca, Calculadora, Checklist | — | P2/P3 | Fora desta entrega |
 
 ## Estrutura
 
 | Caminho | O que é |
 |---|---|
-| `index.html` | conteúdo, SVGs das cenas, SEO (meta, Open Graph, JSON-LD) |
-| `assets/css/onex.css` | tokens da marca, layout, cenas vetoriais e roteiro da intro (comentado) |
-| `assets/js/intro.js` | intro "power on" (infraestrutura da skill `efeito-de-intro`) |
-| `assets/js/onex.js` | também controla a hero: botão de pausa, pausa fora da tela/aba oculta e parallax leve pelo cursor |
-| `assets/js/onex.js` | cabeçalho, menu, revelações, cenas, abas de soluções, relógio da terça-feira |
-| `assets/js/rack.js` | racks de servidores em ASCII da seção Sobre (também roda no Node para gerar o quadro estático) |
-| `assets/img/` | logos oficiais, foto do depoimento (baixada do site atual), imagens ilustrativas geradas no Higgsfield, OG |
-| `tools/gerar-hero-datacenter.js` | gera a cena isométrica da hero (geometria calculada, não desenhada à mão) e grava no HTML; rode depois de mexer nela |
-| `tools/gerar-faq-jsonld.js` | gera o JSON-LD `FAQPage` a partir das perguntas visíveis (rode depois de editar o FAQ) |
-| `tools/gerar-rack-estatico.js` | grava no HTML o quadro parado dos racks (sem JS, movimento reduzido, `?fx=0`); rode depois de mexer em `rack.js` |
-| `robots.txt`, `sitemap.xml`, `llms.txt` | SEO e resumo para assistentes de IA (AEO) |
-| `qa/` | planos de QA e capturas (não precisa subir para o servidor) |
+| `index.html` | landing, SVGs dos produtos, SEO (meta, Open Graph, JSON-LD), modais e barra fixa |
+| `assets/css/onex.css` | design system (tokens no `:root`) e todos os componentes; mobile-first |
+| `assets/js/inicio.js` | roda no `<head>` antes de tudo: **configuração do site**, Consent Mode v2, GTM, origem da campanha (`utm_*`/`gclid`), classes `js`/`fx` |
+| `assets/js/onex.js` | comportamento: menu, modal, barra fixa, abas/acordeão, diagnóstico, relógio, contadores, vídeo, formulários, banner de cookies e eventos do `dataLayer` |
+| `assets/fonts/` | Manrope 400/600/700/800 e JetBrains Mono 500 (subconjunto latino, licença OFL), servidas localmente |
+| `assets/onex.vcf` | cartão de contato (evento `save_contact`) |
+| `tools/whatsapp.json` + `tools/aplicar-whatsapp.js` | tabela de mensagens do WhatsApp (uma por `ref`) e o script que reescreve os links |
+| `tools/gerar-faq-jsonld.js` | gera o JSON-LD `FAQPage` a partir do FAQ exibido |
+| `qa/cdp.js` + `qa/plano-landing.js` | QA no Edge headless (capturas em `qa/capturas/v2/`) |
 
-## Identidade: preto, branco e laranja
+## Design system (p. 8–11 do PDF)
 
-Paleta da página OnexCloud, sem azul: preto `#111010` (`--preto`), branco, laranja `#F9681C` do logo, cinzas quentes `#55504A` (texto, `--cinza`) e `#746E66` (`--cinza-2`), papel `#F6F4F1`. Fundos escuros: um único gradiente de preto que esquenta para laranja num canto (sem grade, sem brilhos soltos). As fotos do Higgsfield foram reprocessadas com ffmpeg (`geq`): o que era azul virou cinza neutro e o laranja/branco ficaram intactos.
+- **Cores**: `--onex-laranja #F87B1C` (só fundo de botão primário e detalhes; nunca texto sobre branco), `--onex-preto #1D1D1B`, `--onex-creme #F5EEE2`, `--onex-cinza #C6C6C6`, `--onex-branco`. Os tons de apoio são `color-mix` dessas cinco (contraste conferido: texto suave 6,7:1 no creme, 9,7:1 no preto; borda de campo ≥ 3:1). Nenhuma cor, fonte ou espaçamento solto fora do `:root`.
+- **Tipografia**: Manrope local com `font-display: swap` e `preload` do 800 (H1). H1 56/64 → 32/40, H2 40/48 → 28/36, H3 22/30 → 20/28, corpo 18/30 → 16/26, eyebrow 13 → 12 px em maiúsculas com 0,08 em. **Caveat removida**; Google Fonts não é mais carregado.
+- **Espaço e grid**: escala 4–128; 96 px entre seções no desktop e 64 no celular; container de 1200 px, 12 colunas, gutter 24; texto até 680 px.
+- **Breakpoints**: sm 360–767 (1 coluna, abas viram acordeão, fotos viram carrossel, barra fixa), md 768–1023 (barra fixa), lg ≥ 1024 (CTA fixo no menu, barra fixa desligada), xl ≥ 1440 (container travado).
+- **Componentes**: botão primário/secundário/link (56 px no desktop, 48 no celular, primário em largura total no celular, no máximo um por seção), card (raio 16, borda cinza, sem sombra), barra de prova 4 × 1 / 2 × 2 com contador que anima uma vez, acordeão com `button` + `aria-expanded`, abas com `role="tablist"` e setas, barra fixa, modal (`<dialog>`: foco preso, Esc, devolve o foco).
+- **Movimento**: 200–400 ms, `ease-out`, só `opacity` e `transform`; entradas de seção uma vez; nada pisca. Saíram a intro "power on", a cena isométrica animada, os racks em ASCII e as animações contínuas. `prefers-reduced-motion` mostra a composição final.
 
-**Tipografia igual à da página OnexCloud** (onexdc.com.br/OnexCloud): **Manrope** em tudo — títulos 900 com -0,03 em e entrelinha ~1,05, subtítulos 800, menu 700, botões 800, texto 500/600 — e **Caveat** (manuscrita) só na anotação "seu servidor mora aqui" da hero. JetBrains Mono fica apenas no terminal da intro e nos racks em ASCII. Logo oficial em WebP (não redesenhado). O X da intro usa polígonos **medidos no alfa do PNG oficial** e termina com o PNG oficial por cima.
+## As 14 seções
 
-## Intro — roteiro (2,75 s + 0,5 s de dissolução)
+| # | Seção | Fundo | CTA principal | `data-secao` |
+|---|---|---|---|---|
+| 1 | Navegação fixa (sólida após 80 px) | — | (31) 4040-4888 | `1-menu` |
+| 2 | Hero: promessa + prova na 1ª dobra | preto | Ligar para engenheiro (celular) / Falar com engenheiro (desktop, abre o modal) | `2-hero` |
+| 3 | Carta de abertura: dor em 3 frases | branco | — | — |
+| 4 | Teste da terça, 14h: massa × ONEX, relógio 14:00 → 16:30 uma vez | creme | Quero esse atendimento (tel) | `4-teste` |
+| 5 | Três diferenciais, cada card com o próprio link | branco | Agendar visita · Ligar agora · Ver soluções | `5-diferenciais` |
+| 6 | Diagnóstico: 4 frases, a 1ª já marcada | creme | WhatsApp com a mensagem do caso | `6-diag-1` … `6-diag-4` |
+| 7 | Soluções: 9 produtos, abas/acordeão, `?produto=` | branco | Pedir proposta (abre o formulário de proposta); OneXcloud leva ao site próprio | `7-solucoes` |
+| 8 | A prova: vídeo de 60 s (fachada) + 4 fotos reais | preto | — | — |
+| 9 | Clientes: logos + 3 depoimentos + case antes/depois | branco | — | — |
+| 10 | Preço e garantia: ancoragem + 3 faixas + reversão de risco | creme | Quero diagnóstico e visita | `10-preco` |
+| 11 | Quem somos: texto curto + foto da equipe | branco | — | — |
+| 12 | FAQ em acordeão (sem citar concorrentes) + JSON-LD | branco | — | — |
+| 13 | Fechamento + P.S. | preto | Agendar visita · (31) 4040-4888 · WhatsApp | `13-fechamento` |
+| 14 | Formulário de visita `#agendar-visita` | creme | Agendar minha visita | `14-formulario` |
 
-| t (s) | Peça | Técnica |
+## Configuração antes de publicar (`assets/js/inicio.js`)
+
+```js
+gtm: 'GTM-XXXXXXX',   // ID real do container (com X o GTM não carrega)
+endpoint: '',         // URL do endpoint no servidor que grava no CRM
+versaoConsentimento: '2026-10-28'
+```
+
+**Vídeo do tour**: na seção 8 (e nas páginas de obrigado) preencher `data-mp4` + `data-legendas` (arquivo `.vtt`, obrigatório — sem ele o player não é liberado) ou `data-youtube` (ID; abre com legendas ativadas).
+
+**Mensagens do WhatsApp**: editar `tools/whatsapp.json` com a tabela do documento-mãe e rodar `node tools/aplicar-whatsapp.js`. **FAQ**: depois de editar as perguntas, rodar `node tools/gerar-faq-jsonld.js`.
+
+## Medição
+
+Tudo passa por um único container do GTM; o site só envia eventos para o `dataLayer`, **sem dados pessoais**.
+
+- **Consent Mode v2**: `ad_storage`, `analytics_storage`, `ad_user_data` e `ad_personalization` negados por padrão no `<head>`, antes do GTM. O banner (Aceitar / Recusar / Personalizar: análise e marketing) grava a escolha, envia `gtag('consent','update')` e o evento `consentimento_atualizado` (`consentimento_analise`, `consentimento_marketing`). "Preferências de cookies" no rodapé reabre o banner.
+- **Origem da campanha**: `utm_*` e `gclid` da primeira página da sessão ficam em `sessionStorage` e vão nos campos ocultos dos formulários, com `pagina` e `secao`.
+- **Cliques**: todo CTA tem `data-cta` (`tel`, `whatsapp`, `cta`, `vcard`), `data-secao`, `data-ref` (WhatsApp) ou `data-destino`; `data-pagina` é carimbado a partir do `<body>`. **Decisão:** um único ouvinte no site converte o clique no evento da tabela e envia ao `dataLayer`. No GTM, crie só **gatilhos de Evento personalizado** — não crie gatilho de clique, senão os cliques contam em dobro.
+- **CTA de ligação no desktop**: abre o modal e envia `click_cta` com `destino: modal-contato`; `click_tel` só sai quando a pessoa escolhe "Ligar" no modal ou toca no link no celular.
+
+| Evento | Quando | Parâmetros | Conversão no GA4 |
+|---|---|---|---|
+| `click_tel` | link `tel:` no celular ou "Ligar" do modal | secao, pagina | Sim |
+| `click_whatsapp` | link do WhatsApp | secao, pagina, ref | Sim |
+| `click_cta` | demais CTAs | secao, pagina, destino | Não |
+| `diagnostico_opcao` | troca de opção no diagnóstico | opcao (1–4) | Não |
+| `scroll` | 50% e 90% da página | percent, pagina | Não (desligar o scroll da medição otimizada do GA4) |
+| `video_play` | play no tour | pagina | Não |
+| `save_contact` | download do vCard | pagina | Não |
+| `generate_lead` | carregamento da página de obrigado | tipo, secao, pagina, produto, unidade | Sim |
+
+No GTM: GA4 com consentimento de análise; Meta Pixel (`Lead` em `generate_lead`, `Contact` em `click_tel`/`click_whatsapp`), Google Ads (primária `generate_lead`, secundárias `click_tel`/`click_whatsapp`) e Clarity com consentimento de marketing (Clarity só com mídia ativa).
+
+## Formulários
+
+O GitHub Pages só serve arquivos estáticos: os formulários precisam de um **endpoint no servidor** (função serverless ou backend da ONEX) entre o site e o CRM. **Nenhuma chave de CRM, e-mail ou WhatsApp no navegador** — só no endpoint, em variável de ambiente.
+
+O site envia `POST` JSON para `endpoint`:
+
+```json
+{ "tipo": "visita", "nome": "…", "empresa": "…", "whatsapp": "31987654321", "unidade": "ipatinga",
+  "utm_source": "", "utm_medium": "", "utm_campaign": "", "utm_term": "", "utm_content": "", "gclid": "",
+  "pagina": "infraestrutura", "secao": "14-formulario", "site": "",
+  "consentimento": { "versao": "2026-10-28", "texto": "Ao enviar…", "data_hora": "2026-10-28T17:00:00.000Z", "pagina": "/infraestrutura" } }
+```
+
+Proposta troca `unidade` por `produto`. Resposta 2xx → página de obrigado com `?s=<id>`; qualquer erro ou 15 s sem resposta → mensagem de falha com o telefone. O endpoint deve repetir a validação, recusar se `site` (honeypot) vier preenchido, limitar envios por IP, gravar o consentimento junto com o lead e avisar o comercial em menos de 1 minuto. Se o spam persistir: Cloudflare Turnstile.
+
+Validação no navegador: ao sair do campo, e o erro some assim que o valor fica correto (nunca a cada tecla); WhatsApp com máscara (00) 00000-0000 e 10 ou 11 dígitos; rótulos sempre visíveis; campos com 16 px. **A microcopy de erro, carregamento e falha é provisória** (objeto `MSG` em `onex.js`) até chegar a do documento-mãe.
+
+As páginas de obrigado só abrem logo depois de um envio (sem o parâmetro de sessão voltam para a página inicial), têm `noindex, nofollow`, ficam fora do sitemap e do menu e disparam `generate_lead` uma vez.
+
+## SEO, performance e acessibilidade
+
+- Um `<h1>` por página, H2/H3 na ordem do wireframe; `lang="pt-BR"`; canonical absoluto; Open Graph e Twitter Card 1200 × 630.
+- JSON-LD: `Organization`, dois `LocalBusiness` (Ipatinga e BH, com telefone), `WebPage`, `BreadcrumbList` e `FAQPage` gerado do FAQ exibido. Marca padronizada como **ONEX** e **OneXcloud**.
+- **Staging com `noindex, nofollow` em todas as páginas.** No dia do lançamento: trocar para `index, follow` (exceto obrigado) e mover a landing para `/infraestrutura/`.
+- Primeira carga ≈ 290 KB sem compressão (≈ 170 KB com gzip), sem imagens pesadas por enquanto. Quando as fotos reais chegarem: WebP/AVIF com `srcset`, `width`/`height`, `loading="lazy"` abaixo da dobra e `fetchpriority="high"` na do hero (o HTML tem o modelo comentado).
+- Foco visível de 2 px, alvos de toque ≥ 48 px, ícones decorativos com `aria-hidden`, abas e acordeões com os papéis ARIA, modal com foco preso.
+
+## Pendências de conteúdo (ficam visíveis entre colchetes e bloqueiam o lançamento)
+
+| Pendência (tabela do PDF) | Onde está o placeholder | Responsável |
 |---|---|---|
-| 0,00 + n·0,22 | três linhas de boot digitadas (`power --on`, `[ ok ] energia redundante`, `[ ok ] link · climatização · racks`) | texto em steps |
-| 0,20 + n·0,12 | contorno das três peças do X | traço que se desenha (`pathLength=1`) |
-| 0,95 + n·0,06 | peças acendem em laranja | contorno → preenchimento |
-| 1,12–1,67 | faixa de luz varre o X (LED de rack) | recorte pelo próprio X |
-| 1,30 + n·0,08 | letras oficiais o-n-e sobem | stagger |
-| 1,55 | X oficial (PNG) por cima do vetor | troca para a arte oficial |
-| 1,85–2,27 | "data center" digitado | clip em steps |
-| 2,75 | overlay dissolve com zoom de 1,04 e os racks da hero sobem em sequência | dissolução |
+| Plantão 24/7 e tempo médio de atendimento | modal (`[tempo médio]`), P.S. marcado como pendente | Operação (Kayo) |
+| SLA, autonomia do gerador, operadoras, certificação | barra de prova (`[X]%`), fotos da prova (`[X] horas`, `[operadoras]`), FAQ (autonomia e certificação) | Operação (Kayo) |
+| Número de clientes e anos de operação | barra de prova (`[N]`, `[N] anos`) | Comercial |
+| Fotos reais dos dois data centers e da equipe | hero, 4 fotos da prova, quem somos | Marketing |
+| Vídeo de 60 s do tour (com legendas) | seção 8 e páginas de obrigado | Marketing |
+| 3 depoimentos, logos e 1 case, com autorização | seção 9 (o depoimento do Guilherme Cruz é o do site atual; falta a autorização por escrito) | Comercial + Marketing |
+| Política de Privacidade e Termos | `privacidade/`, `termos/` | Jurídico |
+| CRM e credenciais da integração | `endpoint` em `inicio.js` | Comercial + DEV |
+| Preços "a partir de" | abas de colocation, dedicados, VPS, virtualização, OneXcloud, e-mail e backup | Comercial |
+| Prazo de retorno de visita, proposta e WhatsApp | seção 14, modais e páginas de obrigado | Comercial |
+| PDF do checklist (isca 2) | páginas de obrigado | Marketing (P3) |
 
-Cabeçalho e textos da hero entram a partir de `--rise-start: 2,95 s`. Pular: Escape, Tab, Enter, roda, toque, clique, rolagem; aba oculta libera; failsafe CSS em 4,8 s.
+**Copy**: a regra do PDF é que nenhum texto seja escrito pelo DEV. Sem acesso ao documento-mãe, reaproveitei a copy da versão anterior (encurtando a carta para 3 frases, tirando a pergunta que citava concorrentes e o "99,9% de uptime" não validado) e usei textos funcionais mínimos onde não havia nada (microcopy de formulário, banner de cookies, páginas de obrigado, eyebrows novos). **Tudo precisa ser conferido com o documento-mãe**, assim como título e descrição da página e as mensagens do WhatsApp.
 
-## Copy no método de carta de vendas (Empiricus)
+## Redirecionamentos 301 (lista inicial — completar a partir do sitemap atual antes da troca de domínio)
 
-A página segue o fluxo das cartas de vendas da Empiricus — título-provocação → lead em história → inimigo → mecanismo → segmentação → prova → oferta com redução de risco → objeções → fechamento com P.S. — com visual atual e **sem inventar números, prazos ou garantias** (tudo vem do site e do FAQ atuais da OneX).
+| De | Para |
+|---|---|
+| `/produtos/onex-data-center/` | `/infraestrutura?produto=colocation#solucoes` |
+| `/produtos/servidores-dedicados/` | `/infraestrutura?produto=servidores-dedicados#solucoes` |
+| `/produtos/virtualizacao/` | `/infraestrutura?produto=virtualizacao#solucoes` |
+| `/produtos/solucoes-em-nuvem/` | `/infraestrutura?produto=onexcloud#solucoes` |
+| `/produtos/telefonia-voip/` | `/telefonia` (P2; até lá `/infraestrutura?produto=voip#solucoes`) |
+| `/politicas-de-privacidade/` | `/privacidade` |
 
-| # | Seção | Papel no método |
-|---|---|---|
-| 1 | Hero: "Quando seu sistema parar, quem vai atender?" | título-provocação + promessa (engenheiro na 1ª ligação, datacenter que dá para visitar) + CTA em 1ª pessoa |
-| 2 | Carta aberta "O pior dia da sua empresa não avisa quando vai chegar" | lead, inimigo (provedores de massa), índice "nos próximos minutos você vai ver", assinatura |
-| 3 | O teste da terça-feira às 14h | história/contraste com o relógio na rolagem |
-| 4 | Três coisas que nenhum provedor de massa consegue te prometer | mecanismo único |
-| 5 | Diagnóstico: "Qual é o seu desafio neste momento?" | segmentação (como as páginas atuais da Empiricus): 4 frases → recomendação + CTA com mensagem pronta no WhatsApp; funciona sem JS via `:has()` |
-| 6 | Soluções | detalhe do produto |
-| 7 | "Não acredite na gente. Venha ver." + depoimento | prova |
-| 8 | Oferta: tudo o que vem junto + "por que não somos os mais baratos" + "comprove antes de assinar" | oferta, âncora de preço honesta (R$ 5,99 do FAQ) e redução de risco (visita antes de assinar) |
-| 9 | Quem está por trás | credibilidade (+ resumo para AEO) |
-| 10 | Ainda com dúvida? | objeções |
-| 11 | Fechamento + **P.S.** ("ligue agora e repare em quem atende") | fechamento clássico de carta |
+## QA
 
-Botões principais em 1ª pessoa e caixa alta (`.btn--caps`: "Quero falar com um engenheiro", "Quero agendar minha visita"). No celular, um CTA fixo aparece depois da hero e some no fechamento. A versão anterior do HTML ficou guardada no histórico do Git.
+`node qa/cdp.js qa/plano-landing.js` (Node 14+, Microsoft Edge instalado). Verifica: H1, CTA e barra de prova na 1ª dobra em 375 × 667; barra fixa depois do hero e escondida com o formulário; sem rolagem horizontal em 360/390/768/1024/1440; menu sólido após 80 px; modal com foco devolvido; diagnóstico; relógio até 16:30; abas e acordeão com `?produto=`; validação, máscara e falha com telefone; guarda e `generate_lead` da página de obrigado; eventos sem dados pessoais; movimento reduzido. Último resultado: **36 de 36**. As capturas de página inteira saem em movimento reduzido (a captura longa do headless reinicia as transições).
 
-## Hero — datacenter isométrico animado
-
-Texto à esquerda e, à direita, uma cena isométrica em SVG: piso limpo, duas fileiras de 6 racks, corredor frio com ladrilhos perfurados, calhas de fibra sobre os racks e um ponto de backbone. "Seu rack" tem contorno laranja e a anotação manuscrita "seu servidor mora aqui". Cartões de vidro por cima: **Operacional** (Ipatinga · BH, com linha de status), **Engenheiro na linha** (24/7 · na 1ª ligação) e **Energia redundante** (geradores + UPS).
-
-- **Entrada** (a partir de `--rise-start`): piso aparece, racks sobem um a um (55 ms entre eles), fibras se desenham, cartões e anotação entram.
-- **Ciclos**: LEDs piscam em ritmos diferentes, pulsos de dados correm pelas fibras (backbone → fileira do fundo, backbone → seu rack, fileira da frente → backbone), ar frio sobe do corredor, o backbone emite um anel.
-- **Controle**: pausa sozinha fora da tela e com a aba oculta; parallax leve da cena e dos cartões pelo cursor (só ponteiro fino). **Decisão (pedido do cliente):** o botão de pausar foi retirado. Pela WCAG 2.2.2, movimento automático com mais de 5 s ao lado de conteúdo pede um jeito de pausar; sem o botão, quem não ativou "reduzir movimento" no sistema não tem como parar os ciclos enquanto está no topo. Não reintroduzir sem pedido.
-- Medido no Edge headless: **60 quadros por segundo** estáveis em 1440 e 390 px, nenhum quadro acima de 50 ms (`qa/plano-fps.js`).
-
-## Animações vetoriais
-
-- **Por que a OneX** (3 cenas): porta do datacenter se abre para o seu rack · ligação vai direto ao engenheiro e a nota da "música de espera" é riscada · cinco serviços se ligam ao X e viram "1 contrato · 1 nota fiscal".
-- **Soluções** (9 cenas, uma por aba): servidor entra no rack com energia A/B e ar frio · vizinhos somem e CPU/memória/disco vão a 100% · terminal da VPS digitando · camadas da virtualização se empilham · arquivos entram na nuvem com pino em MG · site se monta e liga ao pino de MG · e-mail passa pelo escudo e o spam ricocheteia · voz viaja e o PABX distribui ramais · backup: a cópia diária sai do seu servidor para o cofre no datacenter (seg, ter, qua), um arquivo é apagado, a cópia de terça volta pelo caminho de restauração e o servidor fica "restaurado em minutos".
-- **Terça-feira às 14h**: no desktop a cena fica fixa e a rolagem gira o relógio (14:00 → 16:30); a coluna da OneX termina nos primeiros segundos, a do provedor gigante vai se arrastando. No celular a sequência toca ao entrar na tela.
-- **Sobre**: dois racks em ASCII (Ipatinga e Belo Horizonte, 64 colunas que se ajustam à largura) — ligam linha a linha ao aparecer; LEDs piscam, barras de uso oscilam, ventoinhas giram, o tráfego anda no switch, o UPS pulsa e uma faixa de luz percorre os racks (no desktop segue o cursor); "seu servidor" fica em laranja. Texto num `<pre>` a ~8 quadros/s, pausado fora da tela. Por cima, a rota Belo Horizonte ↔ Ipatinga. **Contato**: as três peças do X se montam.
-
-As cenas tocam ao entrar na tela e rearmam ao sair (tocam de novo ao voltar). O quadro final é a composição estática.
-
-## Imagens geradas no Higgsfield
-
-Fibra óptica, frente de rack, climatização e sala de energia (mosaico "O que tem do outro lado da porta"). Essas fotos **não são do datacenter da OneX**: a página diz "Imagens ilustrativas. Para ver a estrutura real, agende uma visita." Troque por fotos reais quando houver.
-
-## Pendências a confirmar com a OneX
-
-- Uptime: a home atual diz 99,9%; as páginas de produto dizem 99,99% em SLA. Usei 99,9%.
-- Endereços completos dos dois datacenters (para `PostalAddress` e Google Business).
-- Preço da VPS Linux, do e-mail e da OnexCloud (no site atual aparecem só especificações).
-- Canonical: `https://onexdc.com.br/` assume que esta página substitui a home atual.
-
-## Verificado
-
-Edge headless via DevTools Protocol, com o harness `qa/cdp.js` (Node 14+, sem dependências; precisa do Microsoft Edge instalado). Rode da pasta do projeto: `node qa/cdp.js qa/plano-hero.js` (troque pelo plano desejado; as capturas vão para `qa/capturas/`). Verificado: hero e intro quadro a quadro em 1440 e 390 px, as 13 cenas no meio e no fim, troca das 9 abas (altura estável de 711 px no desktop), terça-feira em 0/30/65/100% da rolagem, página inteira em 1440 e 390 sem estouro lateral, menu do celular, movimento reduzido (sem intro, composição final) e `?fx=0`, console sem erros, larguras 320/390/820/1024/1440/1920 sem estouro lateral.
-
-Hero isométrica: entrada em quadros, 320/390/1024/1440 px, `?fx=0` e fluidez (`qa/plano-hero.js`, `qa/plano-fps.js`).
-
-**Não verificado**: Safari/iOS, Firefox e celular físico.
+**Não verificado**: Safari/iOS, Firefox, celular físico, PageSpeed Insights, DebugView do GA4 (precisa do container) e o envio real ao CRM (precisa do endpoint).

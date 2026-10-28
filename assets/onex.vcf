@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;;;;
+FN:ONEX Data Centers
+ORG:ONEX Data Centers
+TEL;TYPE=WORK,VOICE:+55 31 4040-4888
+EMAIL;TYPE=WORK:contato@onexdatacenter.com.br
+URL:https://onexdc.com.br/
+ADR;TYPE=WORK:;;;Ipatinga;MG;;Brasil
+ADR;TYPE=WORK:;;;Belo Horizonte;MG;;Brasil
+NOTE:Engenheiro na primeira ligação.
+END:VCARD

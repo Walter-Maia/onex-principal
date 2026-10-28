@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR" data-raiz="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedido de proposta recebido | ONEX Data Centers</title>
+<!-- Página de obrigado: sempre noindex, nofollow; fora do sitemap e do menu -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1D1D1B">
+<script>
+/* Só abre depois de um envio: sem o parâmetro de sessão volta para a página inicial */
+(function () { try { var q = new URLSearchParams(location.search).get('s'), l = JSON.parse(sessionStorage.getItem('onex-lead') || 'null'); if (!q || !l || l.id !== q || l.tipo !== 'proposta') throw 0; window.ONEX_LEAD = l; } catch (e) { location.replace('../' + (location.protocol === 'file:' ? 'index.html' : '')); } })();
+</script>
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="preload" href="../assets/fonts/manrope-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/onex.css?v=2.0.0">
+<script src="../assets/js/inicio.js?v=2.0.0"></script>
+<script src="../assets/js/onex.js?v=2.0.0" defer></script>
+</head>
+<body data-pagina="obrigado-proposta">
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8Z"/></symbol>
+  <symbol id="i-cartao" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2M14 9h4M14 13h4"/></symbol>
+  <symbol id="i-whats" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 10.5c.5 2 2 3.5 4 4l1.2-1.2 2 .8v1.6c-4 .4-8-3.6-7.6-7.6H10l.8 2Z"/></symbol>
+</svg>
+
+<header class="topo" data-topo data-topo-solido>
+  <div class="container topo__barra">
+    <a class="topo__logo" href="../index.html" aria-label="ONEX Data Centers, página inicial">
+      <img class="topo__logo-claro" src="../assets/img/logo-onex-branco.webp" width="866" height="250" alt="ONEX Data Centers">
+      <img class="topo__logo-escuro" src="../assets/img/logo-onex-cinza.webp" width="866" height="250" alt="" aria-hidden="true">
+    </a>
+  </div>
+</header>
+
+<main id="conteudo" class="secao secao--creme pagina-simples">
+  <div class="container obrigado">
+    <span class="obrigado__check" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+    <!-- Textos provisórios: os definitivos estão no documento-mãe (Copy de conversão → páginas de obrigado) -->
+    <h1 class="h2">Pedido de proposta recebido.</h1>
+    <p class="texto-apoio">Um engenheiro da ONEX vai entender o seu cenário e enviar a proposta pelo WhatsApp.</p>
+
+    <section class="card card--destaque obrigado__proximo" aria-labelledby="h-proximo">
+      <h2 id="h-proximo">Próximo passo</h2>
+      <p>Retorno em <span class="ph-txt">[prazo de retorno para proposta]</span>. Se preferir adiantar, chame a gente no WhatsApp.</p>
+      <div class="acoes">
+        <a class="btn btn--secundario" href="https://wa.me/553140404888" target="_blank" rel="noopener" data-cta="whatsapp" data-secao="obrigado" data-ref="obrigado-proposta"><svg class="ico" aria-hidden="true"><use href="#i-whats"/></svg>WhatsApp</a>
+        <a class="btn btn--link" href="../assets/onex.vcf" download="ONEX Data Centers.vcf" data-cta="vcard" data-secao="obrigado"><svg class="ico" aria-hidden="true"><use href="#i-cartao"/></svg>Salvar contato</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-tour">
+      <h2 id="h-tour" class="h3">Enquanto isso, conheça o data center</h2>
+      <div class="video" data-video data-mp4="" data-legendas="" data-youtube="" style="margin-top: var(--e3)">
+        <button class="video__play" type="button" aria-label="Assistir ao tour de 60 segundos pelo data center, com legendas">
+          <span class="video__capa ph"><span>[Capa do vídeo: tour de 60 s pelo data center]</span></span>
+          <span class="video__icone" aria-hidden="true"><svg class="ico"><use href="#i-play"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="card obrigado__isca" aria-labelledby="h-isca">
+      <h2 id="h-isca" class="h3"><span class="ph-txt">[Isca: checklist do servidor em PDF]</span></h2>
+      <p class="texto-apoio"><span class="ph-txt">[Chamada da isca — documento-mãe, isca 2]</span></p>
+      <p class="ph">Link para /checklist-servidor (P3, até 60 dias depois do lançamento)</p>
+    </section>
+  </div>
+</main>
+
+<footer class="rodape rodape--simples">
+  <div class="container rodape__base">
+    <p>© <span data-ano>2026</span> ONEX Data Centers · (31) 4040-4888</p>
+    <ul>
+      <li><a href="../privacidade/index.html">Política de Privacidade</a></li>
+      <li><a href="../termos/index.html">Termos de uso</a></li>
+      <li><button type="button" data-abre-cookies>Preferências de cookies</button></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+/* Conversão: generate_lead no carregamento (uma vez por envio). Sem dados pessoais. */
+(function () {
+  var l = window.ONEX_LEAD;
+  if (!l || l.contado) return;
+  var ev = { event: 'generate_lead', tipo: l.tipo, secao: l.secao, pagina: l.pagina };
+  if (l.produto) ev.produto = l.produto;
+  if (l.unidade) ev.unidade = l.unidade;
+  (window.dataLayer = window.dataLayer || []).push(ev);
+  l.contado = true;
+  try { sessionStorage.setItem('onex-lead', JSON.stringify(l)); } catch (e) {}
+})();
+</script>
+</body>
+</html>

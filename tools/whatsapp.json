@@ -1,0 +1,18 @@
+{
+  "_leia": "Tabela de mensagens do WhatsApp (uma por ref). Textos provisórios: trocar pelos da tabela de mensagens do documento-mãe e rodar `node tools/aplicar-whatsapp.js`.",
+  "numero": "553140404888",
+  "mensagens": {
+    "hero": "Olá! Vim pelo site da ONEX e quero falar com um engenheiro. (ref: hero)",
+    "menu": "Olá! Vim pelo site da ONEX e quero falar com um engenheiro. (ref: menu)",
+    "modal": "Olá! Quero falar com um engenheiro da ONEX. (ref: modal)",
+    "diag-1": "Olá! Meu servidor fica no escritório e quero levar para o data center da ONEX. (ref: diag-1)",
+    "diag-2": "Olá! Meu provedor atual demora para resolver e quero migrar para a ONEX. (ref: diag-2)",
+    "diag-3": "Olá! Quero e-mail profissional e telefonia VoIP com a ONEX. (ref: diag-3)",
+    "diag-4": "Olá! Preciso comprovar onde ficam os dados da minha empresa (LGPD/auditoria). (ref: diag-4)",
+    "fechamento": "Olá! Quero falar com um engenheiro da ONEX sobre a minha infraestrutura. (ref: fechamento)",
+    "barra-fixa": "Olá! Vim pelo site da ONEX e quero falar com um engenheiro. (ref: barra-fixa)",
+    "form-falha": "Olá! Tentei enviar o formulário do site da ONEX e não consegui. (ref: form-falha)",
+    "obrigado-visita": "Olá! Acabei de pedir uma visita pelo site da ONEX. (ref: obrigado-visita)",
+    "obrigado-proposta": "Olá! Acabei de pedir uma proposta pelo site da ONEX. (ref: obrigado-proposta)"
+  }
+}

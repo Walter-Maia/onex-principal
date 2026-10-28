@@ -95,6 +95,8 @@ const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
   };
   const cmd = (method, params) => { const i = ++id; ws.send(JSON.stringify({ id: i, method, params: params || {} })); return new Promise((res, rej) => pend.set(i, { res, rej })); };
   await cmd('Page.enable'); await cmd('Runtime.enable'); await cmd('Log.enable');
+  // mantém a aba "em primeiro plano": sem isso o headless para rAF/IntersectionObserver depois de algumas capturas
+  try { await cmd('Emulation.setFocusEmulationEnabled', { enabled: true }); await cmd('Page.bringToFront'); } catch (e) {}
 
   const api = {
     async viewport(w, h, o) {
@@ -126,7 +128,8 @@ const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
       fs.writeFileSync(arquivo, Buffer.from(r.data, 'base64'));
       console.log('captura:', arquivo);
     },
-    erros() { return erros.slice(); }
+    erros() { return erros.slice(); },
+    cmd
   };
   try { await plano(api); }
   catch (e) { console.error('ERRO NO PLANO:', e.message); process.exitCode = 1; }

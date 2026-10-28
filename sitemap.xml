@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Só páginas indexáveis. Páginas de obrigado ficam de fora (noindex). A home "/" entra quando for construída;
+     /presenca-digital, /telefonia, /calculadora e /checklist-servidor entram nos lançamentos P2 e P3. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://onexdc.com.br/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://onexdc.com.br/infraestrutura</loc>
+    <lastmod>2026-10-28</lastmod>
   </url>
   <url>
-    <loc>https://onexdc.com.br/indique/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://onexdc.com.br/privacidade</loc>
+    <lastmod>2026-10-28</lastmod>
   </url>
-  <url><loc>https://onexdc.com.br/produtos/onex-data-center/</loc></url>
-  <url><loc>https://onexdc.com.br/produtos/servidores-dedicados/</loc></url>
-  <url><loc>https://onexdc.com.br/produtos/virtualizacao/</loc></url>
-  <url><loc>https://onexdc.com.br/produtos/solucoes-em-nuvem/</loc></url>
-  <url><loc>https://onexdc.com.br/produtos/telefonia-voip/</loc></url>
+  <url>
+    <loc>https://onexdc.com.br/termos</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
 </urlset>
